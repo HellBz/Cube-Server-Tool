@@ -1,0 +1,28 @@
+Timestamp,Log Level,Message,Class,Method
+2025-05-09 19:11:52,INFO,Starting the CubeServerTool...,dev.cubie.CubeServerTool.CubeServerTool,main
+2025-05-09 19:11:52,INFO,Loading internal Installer-Modules...,dev.cubie.CubeServerTool.CubeServerTool,main
+2025-05-09 19:11:52,INFO,Loaded internal installer: Example,dev.cubie.CubeServerTool.CubeServerModule,loadInternalInstallers
+2025-05-09 19:11:52,INFO,Loaded internal installer: MinecraftForge,dev.cubie.CubeServerTool.CubeServerModule,loadInternalInstallers
+2025-05-09 19:11:52,INFO,Loaded internal installer: MinecraftVanilla,dev.cubie.CubeServerTool.CubeServerModule,loadInternalInstallers
+2025-05-09 19:11:52,INFO,Loading external JARs from D:\GIT\CubeServerTool\CubeServerTool\app\cst_data\modules...,dev.cubie.CubeServerTool.CubeServerTool,main
+2025-05-09 19:11:52,INFO,Scanning directory: "D:\GIT\CubeServerTool\CubeServerTool\app\cst_data\modules" ...,dev.cubie.CubeServerTool.CubeServerModule,loadExternalJars
+2025-05-09 19:11:52,INFO,Available installers:,Data.dev.cubie.CubeServerTool.InstallerUI,selectInstaller
+2025-05-09 19:11:52,INFO,1. Example-Installer  2. Minecraft-FORGE    3. Minecraft-Vanilla  ,Data.dev.cubie.CubeServerTool.DataTablePrinter,printTable
+2025-05-09 19:11:52,INFO,Select an installer (1-3): ,Data.dev.cubie.CubeServerTool.InstallerUI,selectInstaller
+2025-05-09 19:11:52,WARNING,No input provided using default installer: 1,Data.dev.cubie.CubeServerTool.InstallerUI,selectInstaller
+2025-05-09 19:11:52,INFO,Available Types:,Data.dev.cubie.CubeServerTool.InstallerUI,selectType
+2025-05-09 19:11:52,INFO,[1] Release   [2] Snapshot  [3] All       ,Data.dev.cubie.CubeServerTool.DataTablePrinter,printTable
+2025-05-09 19:11:52,INFO,Select a Type (1-3): ,Data.dev.cubie.CubeServerTool.InstallerUI,selectType
+2025-05-09 19:11:52,WARNING,No input provided using default subVersion: 1,Data.dev.cubie.CubeServerTool.InstallerUI,selectType
+2025-05-09 19:11:52,INFO,Available versions:,Data.dev.cubie.CubeServerTool.InstallerUI,selectVersion
+2025-05-09 19:11:52,INFO,[1] 1.20.2  [2] 1.19.4  ,Data.dev.cubie.CubeServerTool.DataTablePrinter,printTable
+2025-05-09 19:11:52,INFO,Select a version (1-2): ,Data.dev.cubie.CubeServerTool.InstallerUI,selectVersion
+2025-05-09 19:11:52,WARNING,No input provided using default version: 1,Data.dev.cubie.CubeServerTool.InstallerUI,selectVersion
+2025-05-09 19:11:52,INFO,Available subversions:,Data.dev.cubie.CubeServerTool.InstallerUI,selectSubVersion
+2025-05-09 19:11:52,INFO,[1] 36.1.0  [2] 36.1.1  ,Data.dev.cubie.CubeServerTool.DataTablePrinter,printTable
+2025-05-09 19:11:52,INFO,Select a subversion (1-2): ,Data.dev.cubie.CubeServerTool.InstallerUI,selectSubVersion
+2025-05-09 19:11:52,WARNING,No input provided using default subVersion: 1,Data.dev.cubie.CubeServerTool.InstallerUI,selectSubVersion
+2025-05-09 19:11:52,INFO,Enable auto-update? (yes/no): ,Data.dev.cubie.CubeServerTool.InstallerUI,selectAutoUpdate
+2025-05-09 19:11:52,WARNING,No input provided using default choice: no,Data.dev.cubie.CubeServerTool.InstallerUI,selectAutoUpdate
+2025-05-09 19:11:52,INFO,Auto-update is disabled.,dev.cubie.CubeServerTool.CubeServerTool,main
+2025-05-09 19:11:52,INFO,Installation process completed. Exiting.,dev.cubie.CubeServerTool.CubeServerTool,main
