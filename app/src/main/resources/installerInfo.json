@@ -1,5 +1,5 @@
 {
-  "name": "Minecraft-Server-Installer",
+  "name": "CubeServerTool",
   "version": "1.0.0",
-  "description": "Installer for Minecraft servers, supporting various modding platforms."
+  "description": "Tool for managing Minecraft servers, supporting various modding platforms."
 }
