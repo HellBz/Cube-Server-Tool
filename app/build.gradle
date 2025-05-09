@@ -41,7 +41,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'de.hellbz.MinecraftServerInstaller.MainInstaller'
+    mainClass = 'dev.cubie.CubeServerTool.CubeServerTool'
 }
 
 tasks.named('test') {
@@ -80,7 +80,7 @@ jar {
     destinationDirectory.set(file("compiled_all/${timestampOnlyDay}/${project.version}/"))
     manifest {
         attributes(
-                'Main-Class': "de.hellbz.MinecraftServerInstaller.MainInstaller"
+                'Main-Class': "dev.cubie.CubeServerTool.CubeServerTool"
         )
     }
 
@@ -95,18 +95,18 @@ jar {
     from(sourceSets.main.output)
 
     // Inkludiere alle Ressourcen aus dem Modules-Ordner (z. B. XML, JSON)
-    from(file('src/main/java/de/hellbz/MinecraftServerInstaller/Modules')) {
+    from(file('src/main/java/dev/cubie/CubeServerTool/Modules')) {
         include '**/*'
         exclude '**/*.java' // Schließt die .java-Dateien aus, da diese kompiliert werden
-        into 'de/hellbz/MinecraftServerInstaller/Modules'
+        into 'dev/cubie/CubeServerTool/Modules'
     }
 
     // Kopiere die JAR-Datei nach der Erstellung in einen anderen Ordner
     doLast {
 
-        delete file('compiled/msi_data/config') // Pfad zum Zielordner
-        delete file('compiled/msi_data/logs') // Pfad zum Zielordner
-        delete file('compiled/msi_data/temp') // Pfad zum Zielordner
+        delete file('compiled/cst_data/config') // Pfad zum Zielordner
+        delete file('compiled/cst_data/logs') // Pfad zum Zielordner
+        delete file('compiled/cst_data/temp') // Pfad zum Zielordner
         copy {
             from archiveFile.get().asFile // Die erstellte JAR-Datei
             into 'compiled/' // Zielverzeichnis
@@ -167,11 +167,11 @@ sourceSets.main.java.srcDirs = ['src/main/java']
 
 // Task für das Kompilieren der Plugins
 tasks.register('compilePlugins', JavaCompile) {
-    source = fileTree('src/main/java/de/hellbz/MinecraftServerInstaller/Modules') {
+    source = fileTree('src/main/java/dev/cubie/CubeServerTool/Modules') {
         include '**/*.java'
     }
     classpath = sourceSets.main.output + configurations.compileClasspath
-    destinationDir = file("$buildDir/classes/MinecraftServerInstaller/Modules")
+    destinationDir = file("$buildDir/classes/CubeServerTool/Modules")
 
     doFirst {
         println "Compiling plugin sources..."
@@ -190,30 +190,30 @@ tasks.register('buildPlugins') {
 }
 
 // Registriere JAR-Tasks für die Plugins
-file('src/main/java/de/hellbz/MinecraftServerInstaller/Modules').eachDir { dir ->
+file('src/main/java/dev/cubie/CubeServerTool/Modules').eachDir { dir ->
     def jarTaskName = "compilePlugin_${dir.name}"
     tasks.register(jarTaskName, Jar) {
         dependsOn 'compilePlugins'
         archiveBaseName.set("${dir.name}")
 
         // Füge die kompilierten Klassen hinzu
-        from(file("$buildDir/classes/MinecraftServerInstaller/Modules/de/hellbz/MinecraftServerInstaller/Modules/${dir.name}")) {
+        from(file("$buildDir/classes/CubeServerTool/Modules/dev/cubie/CubeServerTool/Modules/${dir.name}")) {
             include '**/*'
             // Entferne den führenden Pfad, um die richtige Struktur in der JAR zu bekommen
-            into "de/hellbz/MinecraftServerInstaller/Modules/${dir.name}"
+            into "dev/cubie/CubeServerTool/Modules/${dir.name}"
         }
-        destinationDirectory.set(file("compiled_all/${timestampOnlyDay}/${project.version}/msi_data/modules/"))
+        destinationDirectory.set(file("compiled_all/${timestampOnlyDay}/${project.version}/cst_data/modules/"))
 
         // Füge alle anderen Dateien aus dem Plugin-Ordner hinzu (Bilder, XML, JSON, etc.)
         from(dir) {
             include '**/*' // Schließt alle Dateien ein
             exclude '**/*.java' // Schließt die .java-Dateien aus, da diese kompiliert wurden
-            into "de/hellbz/MinecraftServerInstaller/Modules/${dir.name}"
+            into "dev/cubie/CubeServerTool/Modules/${dir.name}"
         }
 
         manifest {
             attributes(
-                    'Main-Class': "de.hellbz.MinecraftServerInstaller.Modules.${dir.name}.${dir.name}"
+                    'Main-Class': "dev.cubie.CubeServerTool.Modules.${dir.name}.${dir.name}"
             )
         }
     }
@@ -230,7 +230,7 @@ tasks.named('build') {
 
 task customFatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': "de.hellbz.MinecraftServerInstaller.MainInstaller"
+        attributes 'Main-Class': "dev.cubie.CubeServerTool.CubeServerModule"
     }
     archiveBaseName = 'all-in-one-jar'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -240,17 +240,17 @@ task customFatJar(type: Jar) {
 
 // Task zum Löschen des Zielverzeichnisses
 task cleanOutputDir(type: Delete) {
-    delete file('compiled/msi_data/modules/') // Pfad zum Zielordner
-    delete file('compiled/msi_data/config') // Pfad zum Zielordner
-    delete file('compiled/msi_data/logs') // Pfad zum Zielordner
-    delete file('compiled/msi_data/temp') // Pfad zum Zielordner
+    delete file('compiled/cst_data/modules/') // Pfad zum Zielordner
+    delete file('compiled/cst_data/config') // Pfad zum Zielordner
+    delete file('compiled/cst_data/logs') // Pfad zum Zielordner
+    delete file('compiled/cst_data/temp') // Pfad zum Zielordner
 }
 
 // Task zum Kopieren der JAR-Dateien
 task copyJarsToOutputDir(type: Copy) {
     dependsOn 'buildPlugins' // Task wird nach dem Build aufgerufen
-    from(file("compiled_all/${timestampOnlyDay}/${project.version}/msi_data/modules/")) // Ursprünglicher Ordner mit den JARs
-    into file('compiled/msi_data/modules/') // Zielordner
+    from(file("compiled_all/${timestampOnlyDay}/${project.version}/cst_data/modules/")) // Ursprünglicher Ordner mit den JARs
+    into file('compiled/cst_data/modules/') // Zielordner
     include '**/*.jar' // Kopiere nur JAR-Dateien
     // Umbenennen der Dateien beim Kopieren, entfernt den Versionsanteil
     rename { fileName ->

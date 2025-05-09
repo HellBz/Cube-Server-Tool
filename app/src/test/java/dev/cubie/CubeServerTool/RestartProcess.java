@@ -1,7 +1,7 @@
-package de.hellbz.MinecraftServerInstaller;
+package dev.cubie.CubeServerTool;
 
-import de.hellbz.MinecraftServerInstaller.Utils.LoggerUtility;
-import de.hellbz.MinecraftServerInstaller.Utils.ProcessHandler;
+import dev.cubie.CubeServerTool.Utils.LoggerUtility;
+import dev.cubie.CubeServerTool.Utils.ProcessHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

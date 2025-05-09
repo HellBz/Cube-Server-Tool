@@ -1,6 +1,6 @@
 
         @echo off
-        echo Project Name: Minecraft-Server-Installer
-        java -jar Minecraft-Server-Installer.jar
+        echo Project Name: CubeServerTool
+        java -jar CubeServerTool.jar
         pause
         

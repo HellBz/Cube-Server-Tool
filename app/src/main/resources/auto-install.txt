@@ -6,7 +6,7 @@ Installer=MinecraftVanilla
 
 # Specify your desired LoaderType.
 # Possible options are ["Release" or "Snapshot" or "All"]
-Type=NeoForge
+Type=Release
 
 # Specify your desired Loader-Version.
 # Possible options are [Version like: "20.4.164-beta" or "latest" or "recommended"]
